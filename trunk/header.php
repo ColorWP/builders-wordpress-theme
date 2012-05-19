@@ -41,5 +41,5 @@
 </head>
 
 <body <?php body_class(); ?>>
-
+    <?php if ( ! isset( $content_width ) ) $content_width = 800; ?>
     	<div id="main-wrapper">
