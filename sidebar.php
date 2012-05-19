@@ -3,8 +3,8 @@
                             <div id="header">
                                     <div id="logo">&nbsp;</div>
                                     <div id="title">
-                                        <p id="sitename"><? bloginfo('name') ?></p>
-                                        <p id="tagline"><? bloginfo('description') ?></p>
+                                        <p id="sitename"><?php bloginfo('name') ?></p>
+                                        <p id="tagline"><?php bloginfo('description') ?></p>
                                     </div>
                             </div>
 			
