@@ -20,6 +20,8 @@
                                     
                                     <?php the_content() ?>
                                     
+                                    <p><?php wp_link_pages(); ?></p>
+                                    
                                     <a href="<?php the_permalink() ?>"><div class="post-comments">Comments</div></a>
                                     <div class="post-meta"><?php the_date() ?><span><!--Sticker like outside effect--></span></div>
 				</div><!--/post-content-->

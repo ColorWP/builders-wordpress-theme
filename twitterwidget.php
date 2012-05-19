@@ -13,8 +13,8 @@ class ColorWP_Twitter_Widget extends WP_Widget
     $num = $instance['num'];
     $followbutton = $instance['followbutton'];
     ?>
-    <p><label for="<?php echo $this->get_field_id('title'); ?>">Title: <input class="widefat" id="<?php echo $this->get_field_id('title'); ?>" name="<?php echo $this->get_field_name('title'); ?>" type="text" value="<?php echo attribute_escape($title); ?>" /></label></p>
-    <p><label for="<?php echo $this->get_field_id('user'); ?>">Twitter Username: <input class="widefat" id="<?php echo $this->get_field_id('user'); ?>" name="<?php echo $this->get_field_name('user'); ?>" type="text" value="<?php echo attribute_escape($username); ?>" /></label></p>
+    <p><label for="<?php echo $this->get_field_id('title'); ?>">Title: <input class="widefat" id="<?php echo $this->get_field_id('title'); ?>" name="<?php echo $this->get_field_name('title'); ?>" type="text" value="<?php echo esc_attr($title); ?>" /></label></p>
+    <p><label for="<?php echo $this->get_field_id('user'); ?>">Twitter Username: <input class="widefat" id="<?php echo $this->get_field_id('user'); ?>" name="<?php echo $this->get_field_name('user'); ?>" type="text" value="<?php echo esc_attr($username); ?>" /></label></p>
     <p><label for="<?php echo $this->get_field_id('num'); ?>">Number of tweets to display:
             <select name="<?php echo $this->get_field_name('num'); ?>" class="widefat">
                 <option value="1" name="1">1</option>
@@ -123,33 +123,9 @@ class lastRSS {
     // Parse RSS file and returns associative array. 
     // ------------------------------------------------------------------- 
     function Get ($rss_url) { 
-        // If CACHE ENABLED 
-        if ($this->cache_dir != '') { 
-            $cache_file = $this->cache_dir . '/rsscache_' . md5($rss_url); 
-            $timedif = @(time() - filemtime($cache_file)); 
-            if ($timedif < $this->cache_time) { 
-                // cached file is fresh enough, return cached array 
-                $result = unserialize(join('', file($cache_file))); 
-                // set 'cached' to 1 only if cached file is correct 
-                if ($result) $result['cached'] = 1; 
-            } else { 
-                // cached file is too old, create new 
-                $result = $this->Parse($rss_url); 
-                $serialized = serialize($result); 
-                if ($f = @fopen($cache_file, 'w')) { 
-                    fwrite ($f, $serialized, strlen($serialized)); 
-                    fclose($f); 
-                } 
-                if ($result) $result['cached'] = 0; 
-            } 
-        } 
-        // If CACHE DISABLED >> load and parse the file directly 
-        else { 
             $result = $this->Parse($rss_url); 
             if ($result) $result['cached'] = 0; 
-        } 
-        // return result 
-        return $result; 
+            return $result; 
     } 
      
     // ------------------------------------------------------------------- 

@@ -18,6 +18,8 @@
 	<ol class="commentlist">
 		<?php wp_list_comments(); ?>
 	</ol>
+        
+        <p><?php paginate_comments_links() ?></p>
 
  <?php else : // this is displayed if there are no comments so far ?>
 
@@ -81,7 +83,14 @@
 			<?php comment_id_fields(); ?>
 		</div>
 		
-		<?php do_action('comment_form', $post->ID); ?>
+		<?php
+                // Required by Wordpress template repository,
+                // but we already have a form layout ready above
+                ob_start();
+                comment_form();
+                ob_get_contents();
+                ob_end_clean();
+                ////do_action('comment_form', $post->ID); ?>
 
 	</form>
 

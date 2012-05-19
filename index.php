@@ -33,6 +33,14 @@
                             <?php endwhile; ?>
                             <?php endif; ?>
 				
+                                <div class="post-content post_nav_links">
+                                    <span id="previous_posts_link">
+                                        <?php previous_posts_link(); ?>
+                                    </span>
+                                    <span id="next_posts_link">
+                                        <?php next_posts_link(); ?>
+                                    </span>
+                                </div>
 			</div>
 		</div><!--/body-->
 		
